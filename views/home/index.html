@@ -17,25 +17,31 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>编号</th>
-					<th>名称</th>
-					<th>命令</th>
-					<th>最后运行时间</th>
-					<th>周期</th>
-					<th>状态</th>
-					<th>操作</th>
+					<th class="text-center">编号</th>
+					<th class="text-center">名称</th>
+					<th class="text-center">命令</th>
+					<th class="text-center">周期</th>
+					<th class="text-center">最后运行时间</th>
+					<th class="text-center">状态</th>
+					<th class="text-center">操作</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% result.forEach(function(re){ %>
 				<tr>
-					<td><%=re.id %></td>
-					<td><%=re.name %></td>
-					<td><%=re.command %></td>
-					<td></td>
-					<td>12</td>
-					<td>dd</td>
-					<td>
+					<td class="text-center"><%=re.id %></td>
+					<td class="text-center"><%=re.name %></td>
+					<td class="text-center"><%=re.command %></td>
+					<td class="text-center">12</td>
+					<td class="text-center"><%=new Date(parseInt(re.ctimed) * 1000).toLocaleString().substr(0,19) %></td>
+					<td class="text-center">
+						<%if (re.status == 1){%>
+							<span style="color:green;">运行</span>
+						<%}else{%>
+							<span style="color:red;">关闭</span>
+						<%}%>
+					</td>
+					<td class="text-center">
 						<a href="" class="btn btn-xs btn-danger">删除</a>
 						<a href="" class="btn btn-xs btn-default">停止</a>
 					</td>
