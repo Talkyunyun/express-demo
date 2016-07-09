@@ -1,12 +1,15 @@
-// mysql 配置文件
+//===============================================================================
+//	@description: 项目配置文件
+//===============================================================================
 module.exports = {
+	// MYSQL数据库配置
 	mysql : {
-		host     		: "localhost",
-		user     		: "root",
-		password 		: "root",
-		database 		: "express",
-		port	 		: 3306,
-//		connectionLimit : 10,
-//		charset   		:'utf8'
+		host     		: "localhost",	// 主机地址
+		user     		: "root",		// 用户名
+		password 		: "root",		// 密码
+		database 		: "express",	// 数据库
+		port	 		: 3306,			// 端口
+		charset   		:'utf8',		// 编码
+		connectionLimit : 10,			// 最大连接数(连接池)
 	}
 };

@@ -1,14 +1,7 @@
+//===============================================================================
+//	@description: 公共函数定义
+//===============================================================================
 module.exports = {
-    extend: function(target, source, flag) {
-        for(var key in source) {
-            if(source.hasOwnProperty(key))
-                flag ?
-                    (target[key] = source[key]) :
-                    (target[key] === void 0 && (target[key] = source[key]));
-        }
-        return target;
-    },
-    
     // json格式输出到前端
     output: function(res, result) {
     	if (typeof result == 'undefined') {
@@ -17,7 +10,6 @@ module.exports = {
     		res.json(result);
     	}
     },
-    
     // 提示函数
     alert: function (res, msg) {
     	res.send("<script>alert('"+ msg +"');</script>");
