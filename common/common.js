@@ -16,5 +16,10 @@ module.exports = {
     	} else {
     		res.json(result);
     	}
+    },
+    
+    // 提示函数
+    alert: function (res, msg) {
+    	res.send("<script>alert('"+ msg +"');</script>");
     }
 };

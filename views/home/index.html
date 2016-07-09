@@ -18,6 +18,7 @@
 			<thead>
 				<tr>
 					<th>编号</th>
+					<th>名称</th>
 					<th>命令</th>
 					<th>最后运行时间</th>
 					<th>周期</th>
@@ -26,17 +27,20 @@
 				</tr>
 			</thead>
 			<tbody>
+				<% result.forEach(function(re){ %>
 				<tr>
-					<td>1</td>
-					<td>ls /usr</td>
-					<td>2015-12-25 20:20:12</td>
-					<td>15分钟</td>
-					<td>运行</td>
+					<td><%=re.id %></td>
+					<td><%=re.name %></td>
+					<td><%=re.command %></td>
+					<td></td>
+					<td>12</td>
+					<td>dd</td>
 					<td>
 						<a href="" class="btn btn-xs btn-danger">删除</a>
 						<a href="" class="btn btn-xs btn-default">停止</a>
 					</td>
 				</tr>
+				<% }) %>
 			</tbody>
 		</table>
 	</div>

@@ -6,31 +6,51 @@ var $sql    = require("./commandSql");
 // 使用连接池，提升性能
 var pool    = mysql.createPool($conf.mysql);
 var commandm = {
-	
+	// 获取列表
+	list: function(req, res, next, callback) {
+		pool.getConnection(function(err, connection) {
+			if (err) {
+				console.log("数据库连接错误：" + err);
+			} else {
+				connection.query($sql.queryAll, function(err, result) {
+					if (err) {
+						console.log("获取记录失败：" + err);
+					} else {
+						connection.release();
+						callback(result);
+					}
+				});
+			}
+		});
+	},
 	// 添加记录
 	add : function(req, res, next) {
 		var name    = req.body.name;
 		var command = req.body.command;
 		var ctimed  = Math.floor(Date.now()/1000);
 		
+		if (!name && !command) {
+			$common.alert(res, '请输入参数');
+			return;
+		}
+		
 		pool.getConnection(function(err, connection) {
 			if (err) {
-				console.log('数据库连接错误：' + err);
-				return false;
+				console.log("数据库连接错误：" + err);
+			} else {
+				connection.query($sql.insert, [name, command, ctimed], function(err, result) {
+					if (err) {
+						console.log("添加失败：" + err);
+					} else {
+						$common.alert(res, "添加成功");
+						// 释放连接
+						connection.release();
+						return;
+					}
+				});
 			}
-			
-			connection.query($sql.insert, [name, command, ctimed], function(err, result) {
-				if (err) {
-					console.log("插入记录错误：" + err);
-					result = {code: 0, msg: '添加失败'};
-				}
-				
-				// 返回json数据给前端
-				$common.output(res, result);
-				// 释放连接
-				connection.release();
-			});
 		});
 	}
 }
+
 module.exports = commandm;

@@ -45,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 前台路由配置
 app.use('/', require('./routes/home/index'));
 app.use('/add', require('./routes/home/add'));
+app.use('/do', require('./routes/home/do'));
 
 app.use('/login', require('./routes/home/login'));
 

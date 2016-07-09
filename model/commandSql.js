@@ -4,7 +4,7 @@ var command = {
 	update   : "UPDATE command SET name='更新内容', command='更新命令' WHERE id=?",
 	delete   : "DELETE FROM command WHERE id=?",
 	queryById: "SELECT * FROM command WHERE id=?",
-	queryAll : "SELECT * FROM command"
+	queryAll : 'SELECT * FROM command ORDER BY ctimed desc'
 };
 
 module.exports = command;
