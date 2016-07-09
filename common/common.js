@@ -13,5 +13,9 @@ module.exports = {
     // 提示函数
     alert: function (res, msg) {
     	res.send("<script>alert('"+ msg +"');</script>");
+    },
+    // 记录运行日志到文件中
+    addFileLogs: function(res) {
+    	
     }
 };
