@@ -10,7 +10,7 @@ var $conf   = require('../conf/conf');
 //	@description: SQL语句定义
 //===============================================================================
 var $sql     = {
-	insert   : 'INSERT INTO command(name, command, ctimed) VALUES(?, ?, ?)',
+	insert   : 'INSERT INTO command(name, command, ctimed, status) VALUES(?, ?, ?, 0)',
 	update   : "UPDATE command SET name='更新内容', command='更新命令' WHERE id=?",
 	delete   : "DELETE FROM command WHERE id=?",
 	queryById: "SELECT * FROM command WHERE id=?",
@@ -40,6 +40,23 @@ var commandm = {
 					} else {
 						connection.release();
 						callback(result);
+					}
+				});
+			}
+		});
+	},
+	// 删除操作
+	del: function(req, res, next, callback) {
+		pool.getConnection(function(err, connection) {
+			if (err) {
+				callback({code: 0, msg: '删除失败'});
+			} else {
+				connection.query($sql.delete, [req.query.id], function(err, result) {
+					if (err) {
+						callback({code: 0, msg: '删除失败'});
+					} else {
+						connection.release();
+						callback({code: 200, msg: '删除成功'});
 					}
 				});
 			}

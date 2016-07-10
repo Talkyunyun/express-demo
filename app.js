@@ -1,13 +1,13 @@
 //===============================================================================
 //	@description: 加载依赖模块
 //===============================================================================
-var express      = require('express')
+var express        = require('express')
 	, path         = require('path')
 	, favicon      = require('serve-favicon')
 	, logger       = require('morgan')
 	, cookieParser = require('cookie-parser')
 	, bodyParser   = require('body-parser')
-	, session		   = require('express-session');
+	, session	   = require('express-session');
 var app = express();
 
 
@@ -46,6 +46,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', require('./routes/home/index'));
 app.use('/add', require('./routes/home/add'));
 app.use('/do', require('./routes/home/do'));
+app.use('/del', require('./routes/home/index'));
+
 
 app.use('/login', require('./routes/home/login'));
 
